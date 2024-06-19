@@ -1,4 +1,4 @@
-import { formatTimeAgo } from "../helpers/formatTimeAgo";
+import { formatTimeAgo } from "../../helpers/formatTimeAgo";
 import Image from "../Image/Image";
 import styles from './styles.module.css'
 
