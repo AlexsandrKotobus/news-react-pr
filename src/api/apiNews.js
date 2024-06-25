@@ -13,13 +13,29 @@ const API_KEY=import.meta.env.VITE_NEWS_API_KEY
 // console.log(import.meta.env.VITE_NEWS_API_KEY) // undefined
 // console.log('BASE_URL', `${BASE_URL}latest-news`)
 
-export const getNews= async (page_number=1, page_size=10) => {
+export const getNews= async ({page_number=1, page_size=10, category}) => {
     try{
         const response = await axios.get(`${BASE_URL}search`, {
             params: {
                 apiKey: API_KEY,
                 page_number,
                 page_size,
+                category,
+            }
+        })
+        // console.log(response.data)
+        return response.data;
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
+export const getCategories = async () => {
+    try{
+        const response = await axios.get(`${BASE_URL}available/categories`, {
+            params: {
+                apiKey: API_KEY,
             }
         })
         console.log(response.data)
