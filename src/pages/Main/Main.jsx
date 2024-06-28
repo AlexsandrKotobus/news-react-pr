@@ -6,16 +6,21 @@ import styles from './styles.module.css'
 import Skeleton from '../../components/Skeleton/Skeleton';
 import Pagination from '../../components/Pagination/Pagination';
 import Categories from '../../components/Categories/Categories';
+import Search from '../../components/Search/Search';
+import {useDebounce} from '../../helpers/hooks/useDebounce'
 
 const Main = () => {
     const [news, setNews] = useState([]);
     const [isLoadin, setIsLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [categories, setCategories] = useState([]);
+    const [keywords, setKeywords] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('All');
     const totalPages = 10;
     const pageSize = 10;
-//запрос новости
+
+    const debounceKeyword = useDebounce(keywords, 1500 );
+    //запрос новости
     const fetchNews = async (currentPage) => {
         try {
             setIsLoading(true)
@@ -24,6 +29,8 @@ const Main = () => {
                 page_number: currentPage,
                 page_size: pageSize,
                 category: selectedCategory === 'All' ? null : selectedCategory,
+                keywords: debounceKeyword,
+            
             })
             setNews(response.news)
             //новости загрузились
@@ -50,14 +57,13 @@ const Main = () => {
 useEffect(()=> {
     fetchCategories();
 }, [])
-// обновление при смене страницы и категории
+// обновление при смене страницы и категории / ввода ключевого слова
 useEffect(() => {       
     fetchNews(currentPage);
-}, [currentPage, selectedCategory]);
+}, [currentPage, selectedCategory, debounceKeyword]);
+// console.log("useEffect", currentPage, selectedCategory, keywords)
 
-
-
-
+// debounceKeyword
     // переключение вперед
     const handleNextPage = () => {
         if (currentPage < totalPages) {
@@ -74,16 +80,20 @@ useEffect(() => {
     const handlePageClick = (pageNumber) => {
             setCurrentPage(pageNumber)
     }
-
+// проверка search
+console.log(keywords);
 
 
     return (
         <main className={styles.main}>
+            {/* категории */}
             <Categories 
                 categories={categories}
                 selectedCategory={selectedCategory}
                 setSelectedCategory={setSelectedCategory}
                 />
+            {/* поиск */}
+            <Search keyworsd={keywords} setKeywords={setKeywords}/>
             {/* банер */}
             {news.length > 0 && !isLoadin ? (
                 <NewsBanner  item={news[0]}/> 
