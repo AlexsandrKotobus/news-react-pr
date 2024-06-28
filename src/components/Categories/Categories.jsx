@@ -1,7 +1,7 @@
 import styles from './styles.module.css'
 
 const Categories = ({categories, setSelectedCategory, selectedCategory}) => {
-  console.log('caat', categories)
+  // console.log('caat', categories)
     return (
        <div className={styles.categories}>
         {categories.map(category => {

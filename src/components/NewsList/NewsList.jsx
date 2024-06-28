@@ -2,7 +2,7 @@ import NewsItem from '../NewsItem/NewsItem'
 import styles from './styles.module.css'
 
 const NewsList = ({news}) => {
-  console.log('news ', news)
+  // console.log('news ', news)
   
     return (
         <ul className={styles.list}>
