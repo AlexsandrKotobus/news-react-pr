@@ -6,7 +6,7 @@ import styles from './styles.module.css'
 import Skeleton from '../../components/Skeleton/Skeleton';
 import Pagination from '../../components/Pagination/Pagination';
 import Categories from '../../components/Categories/Categories';
-import Search from '../../components/Search/Search';
+// import Search from '../../components/Search/Search';
 import {useDebounce} from '../../helpers/hooks/useDebounce'
 
 const Main = () => {
@@ -15,8 +15,8 @@ const Main = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('All');
-    const totalPages = 10;
-    const pageSize = 10;
+    // const totalPages = 10;
+    // const pageSize = 10;
 
     const debounceKeyword = useDebounce(keywords, 1500 );
     //запрос новости
@@ -89,11 +89,12 @@ useEffect(() => {
                 setSelectedCategory={setSelectedCategory}
                 />
             {/* банер */}
-            {news.length > 0 && !isLoadin ? (
+            <NewsBanner isLoadin={isLoadin} item={news.length > 0 &&news[0]}/>
+             {/* {news.length > 0 && !isLoadin ? (
                 <NewsBanner  item={news[0]}/> 
                 ) : (
                 <Skeleton type={'banner'} count={1}/> 
-                )}
+                )} */}
                 <Pagination 
                     handleNextPage={handleNextPage} 
                     handlePreviousPage = {handlePreviousPage}  
@@ -101,6 +102,7 @@ useEffect(() => {
                     currentPage = {currentPage} 
                     totalPages={TOTAL_PAGES} />
             {/* список новостей */}
+            <NewsList isLoadin={isLoadin} news={news}/>
             {!isLoadin ? 
                 (<NewsList news={news}/>)
                   : 
