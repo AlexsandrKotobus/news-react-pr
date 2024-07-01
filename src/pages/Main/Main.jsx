@@ -6,6 +6,8 @@ import styles from './styles.module.css'
 import Skeleton from '../../components/Skeleton/Skeleton';
 import Pagination from '../../components/Pagination/Pagination';
 import Categories from '../../components/Categories/Categories';
+import Search from '../../components/Search/Search';
+import {useDebounce} from '../../helpers/hooks/useDebounce'
 
 const Main = () => {
     const [news, setNews] = useState([]);
@@ -15,14 +17,16 @@ const Main = () => {
     const [selectedCategory, setSelectedCategory] = useState('All');
     const totalPages = 10;
     const pageSize = 10;
-//запрос новости
+
+    const debounceKeyword = useDebounce(keywords, 1500 );
+    //запрос новости
     const fetchNews = async (currentPage) => {
         try {
             setIsLoading(true)
             // было news стало response
             const response = await getNews({
                 page_number: currentPage,
-                page_size: pageSize,
+                page_size: PAGE_SIZE,
                 category: selectedCategory === 'All' ? null : selectedCategory,
             })
             setNews(response.news)
@@ -60,7 +64,7 @@ useEffect(() => {
 
     // переключение вперед
     const handleNextPage = () => {
-        if (currentPage < totalPages) {
+        if (currentPage < TOTAL_PAGES) {
             setCurrentPage(currentPage + 1)
         }
     }
@@ -95,7 +99,7 @@ useEffect(() => {
                     handlePreviousPage = {handlePreviousPage}  
                     handlePageClick = {handlePageClick} 
                     currentPage = {currentPage} 
-                    totalPages={totalPages} />
+                    totalPages={TOTAL_PAGES} />
             {/* список новостей */}
             {!isLoadin ? 
                 (<NewsList news={news}/>)
@@ -107,7 +111,7 @@ useEffect(() => {
                     handlePreviousPage = {handlePreviousPage}  
                     handlePageClick = {handlePageClick} 
                     currentPage = {currentPage} 
-                    totalPages={totalPages} />
+                    totalPages={TOTAL_PAGES} />
         </main>
         
     );
