@@ -9,26 +9,21 @@ import Categories from '../../components/Categories/Categories';
 import {useDebounce} from '../../helpers/hooks/useDebounce';
 import {PAGE_SIZE, TOTAL_PAGES} from '../../constants/constants'
 import { useFetch } from '../../helpers/hooks/useFetch';
+import { useFilters } from '../../helpers/hooks/useFilters';
 
 
 const Main = () => {
-    const [filters, setFilters] = useState({
+    const {filters, changeFilter} = useFilters({
         page_number: 1,
         page_size: PAGE_SIZE,
         category: null,
         keywords: '',
-    }
-    )
-    const changeFilter = (key, value) => {
-        setFilters(prev => {
-            return {...prev, [key]: value}
-        })
-    }
+    })
+ 
+ 
 
     
-    // const [currentPage, setCurrentPage] = useState(1);
-    // const [keywords, setKeywords] = useState('');
-    // const [selectedCategory, setSelectedCategory] = useState('All');
+    
 
 
     const debounceKeyword = useDebounce(filters.keywords, 1500);
