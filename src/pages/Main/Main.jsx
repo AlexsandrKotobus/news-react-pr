@@ -1,46 +1,91 @@
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import NewsBanner from '../../components/NewsBanner/NewsBanner';
-import { getNews } from '../../api/apiNews';
+import { getCategories, getNews } from '../../api/apiNews';
 import NewsList from '../../components/NewsList/NewsList';
 import styles from './styles.module.css'
-import Skeleton from '../../components/Skeleton/Skeleton';
+import Pagination from '../../components/Pagination/Pagination';
+import Search from '../../components/Search/Search';
+import Categories from '../../components/Categories/Categories';
+import {useDebounce} from '../../helpers/hooks/useDebounce';
+import {PAGE_SIZE, TOTAL_PAGES} from '../../constants/constants'
+import { useFetch } from '../../helpers/hooks/useFetch';
+import { useFilters } from '../../helpers/hooks/useFilters';
+
 
 const Main = () => {
-    const [news, setNews] = useState([]);
-    const [isLoadin, setIsLoading] = useState(true);
+    const {filters, changeFilter} = useFilters({
+        page_number: 1,
+        page_size: PAGE_SIZE,
+        category: null,
+        keywords: '',
+    })
+ 
+ 
 
-console.log('isLoadin', isLoadin);
+    
+    
 
-    useEffect(() => {
-        const fetchNews = async () => {
-            try {
-                setIsLoading(true)
-                // было news стало response
-                const response = await getNews()
-                setNews(response.news)
-                //новости загрузились
-                setIsLoading(false)
 
-            } catch (error) {
-                console.log(error)
-            }
+    const debounceKeyword = useDebounce(filters.keywords, 1500);
+
+    const {data, isLoading} = useFetch(getNews, {
+       ...filters,
+        keywords: debounceKeyword,
+    })
+
+    const {data: dataCategories} = useFetch(getCategories)
+
+
+// debounceKeyword
+    // переключение вперед
+    const handleNextPage = () => {
+        if (filters.page_number < TOTAL_PAGES) {
+            changeFilter('page_number', filters.page_number + 1)
         }
-        fetchNews();
-    }, []);
+    }
+    // переключение назад
+    const handlePreviousPage = () => {
+        if (filters.page_number > 1) {
+            changeFilter('page_number', filters.page_number - 1)
+        }
+    }
+    // переключение по номеру страницы
+    const handlePageClick = (pageNumber) => {
+        changeFilter('page_number', pageNumber)
+    }
+// проверка search
+// console.log(keywords);
+
+
     return (
         <main className={styles.main}>
+            {/* категории */}
+            {dataCategories ?  <Categories 
+                categories={dataCategories.categories}
+                selectedCategory={filters.category}
+                setSelectedCategory={(category) => changeFilter('category', category) }
+                /> : null}
+            {/* поиск */}
+            {/* <Search keyworsd={filters.keywords} setKeywords={(keyworsd) => changeFilter('keyworsd', keyworsd)}/> */}
+            <Search keywords={filters.keywords} setKeywords={(keywords) => changeFilter("keywords", keywords)}/>
             {/* банер */}
-            {news.length > 0 && !isLoadin ? (
-                <NewsBanner  item={news[0]}/> 
-                ) : (
-                <Skeleton type={'banner'} count={1}/> 
-                )}
+            <NewsBanner isLoading={isLoading} item={data && data.news && data.news[0]}/>
+            {/* пагинация */}
+                <Pagination 
+                    handleNextPage={handleNextPage} 
+                    handlePreviousPage = {handlePreviousPage}  
+                    handlePageClick = {handlePageClick} 
+                    currentPage = {filters.page_number} 
+                    totalPages={TOTAL_PAGES} />
             {/* список новостей */}
-            {!isLoadin ? 
-                (<NewsList news={news}/>)
-                  : 
-                (<Skeleton type={'item'} count={10}/>)}
-                 {/* <NewsList news={news}/> */}
+            <NewsList isLoading={isLoading} news={data?.news}/>
+             {/* пагинация */}
+                 <Pagination 
+                    handleNextPage={handleNextPage} 
+                    handlePreviousPage = {handlePreviousPage}  
+                    handlePageClick = {handlePageClick} 
+                    currentPage = {filters.page_number} 
+                    totalPages={TOTAL_PAGES} />
         </main>
         
     );
