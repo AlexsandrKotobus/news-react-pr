@@ -1,4 +1,6 @@
 ﻿import {useEffect, useState} from 'react';
+//   useFetch  - кастомный хук для загрузки данных с сервера
+
 export const useFetch = (fetchFunction, params) => {
     const [data, setData] = useState(null);
     const [isLoading, setLoading] = useState(true);
