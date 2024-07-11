@@ -1,5 +1,5 @@
 import { PAGE_SIZE, TOTAL_PAGES } from '../../constants/constants'
-import Pagination from '../Pagination/Pagination';
+// import Pagination from '../Pagination/Pagination';
 import styles from './styles.module.css';
 import NewsList from '../NewsList/NewsList'
 import NewsFilters from '../NewsFilters/NewsFilters';
