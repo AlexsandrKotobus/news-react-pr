@@ -1,10 +1,11 @@
+import { forwardRef } from 'react';
 import styles from './styles.module.css'
 
-const Categories = ({categories, setSelectedCategory, selectedCategory}) => {
+const Categories = forwardRef(({categories, setSelectedCategory, selectedCategory}, ref) => {
   // console.log('caat', categories)
     return (
 
-       <div className={styles.categories}>
+       <div ref={ref} className={styles.categories}>
          <button onClick={()=> setSelectedCategory(null)}  className={!selectedCategory ? styles.active : styles.item}>All</button>
         {categories.map(category => {
           return(
@@ -13,6 +14,7 @@ const Categories = ({categories, setSelectedCategory, selectedCategory}) => {
         })}
        </div>
     );
-}
+});
+Categories.displayName = 'Categories'
 
 export default Categories;
