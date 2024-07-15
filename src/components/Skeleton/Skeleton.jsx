@@ -1,7 +1,7 @@
 import styles from './styles.module.css'
 
 const Skeleton = ({count=1, type = 'banner'}) => {
-console.log("count, type",count, type)
+// console.log("count, type",count, type)
     return (
        <>
        {count > 1  ? 

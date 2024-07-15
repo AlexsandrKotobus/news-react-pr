@@ -1,0 +1,30 @@
+.pagination{
+  display:flex;
+  width: 100%;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pageNumber:disabled,
+.arrow:disabled {
+  cursor: default;
+  color:blueviolet;  /*мои стили*/
+  text-shadow: 1px 1px 10px rgb(46, 38, 38);  /*мои стили*/
+}
+.pageNumber,
+.arrow {
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+
+.pageNumber {
+  padding: 8px;
+}
