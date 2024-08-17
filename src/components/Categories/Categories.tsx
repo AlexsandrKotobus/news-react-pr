@@ -1,5 +1,6 @@
-import { forwardRef } from 'react';
+import  React , { forwardRef } from 'react';
 import styles from './styles.module.css'
+// importfrom 'react';
 
 const Categories = forwardRef(({categories, setSelectedCategory, selectedCategory}, ref) => {
   // console.log('caat', categories)

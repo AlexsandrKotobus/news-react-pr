@@ -8,6 +8,7 @@ import { useDebounce } from '../../helpers/hooks/useDebounce';
 import { useFetch } from '../../helpers/hooks/useFetch';
 import { getNews } from '../../api/apiNews';
 import PagitationWrapper from '../PagitationWrapper/PagitationWrapper';
+import React from 'react';
 
 const NewsByFilters = () => {
     const {filters, changeFilter} = useFilters({
@@ -17,7 +18,7 @@ const NewsByFilters = () => {
         keywords: '',
     })
  
-    const debounceKeyword = useDebounce(filters.keywords, 1500);
+    const debounceKeyword = useDebounce(filters.keywords as string, 1500);
 
     const {data, isLoading} = useFetch(getNews, {
        ...filters,

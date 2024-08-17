@@ -1,3 +1,4 @@
+import React from "react";
 import { formatTimeAgo } from "../../helpers/formatTimeAgo";
 // import withSkeleton from '../../helpers/hocs/withSkeleton';
 import Image from "../Image/Image";

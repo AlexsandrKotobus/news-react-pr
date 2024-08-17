@@ -1,7 +1,16 @@
-﻿export const formatTimeAgo = (dateString) => {
+﻿export const formatTimeAgo = (dateString: string | null) => {
+  if(typeof dateString !== "string") return '';
     const now = new Date();
     const date = new Date(dateString);
+    
     const secondPast = (now.getTime() - date.getTime()) / 1000;
+
+const obj = {
+  name: 'Esia'
+}
+if("name" in obj){
+  obj.name  = "Elisey"
+}
   
     if (secondPast < 60) {
       return `${Math.floor(secondPast)}s ago`;

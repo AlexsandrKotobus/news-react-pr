@@ -1,8 +1,14 @@
 import NewsItem from '../NewsItem/NewsItem';
+import { INews } from '../../interfaces';
 import withSkeleton from '../../helpers/hocs/withSkeleton';
 import styles from './styles.module.css';
+import React from 'react';
 
-const NewsList = ({news}) => {
+interface Props{
+  news: INews[];
+}
+
+const NewsList = ({news}: Props) => {
   // console.log('news ', news)
   
     return (
