@@ -10,20 +10,20 @@ export interface INews {
     url: UrlType;
 }
 
-const array: readonly string[] = ['all', 'reg'];
-array.push('ii');
+// const array: readonly string[] = ['all', 'reg'];
+// array.push('ii');
 
-const array2: ReadonlyArray<string> = ['all', 'reg'];
-array2.push('ii');
+// const array2: ReadonlyArray<string> = ['all', 'reg'];
+// array2.push('ii');
 
-const tuple: readonly [string, number] = ['all', 1]
-tuple[0]='reg'
+// const tuple: readonly [string, number] = ['all', 1]
+// tuple[0]='reg'
 
-const map:ReadonlyMap<string, number>  = new Map([['all', 1], ['reg', 2]]);
-map.set('pol', 3);
+// const map:ReadonlyMap<string, number>  = new Map([['all', 1], ['reg', 2]]);
+// map.set('pol', 3);
 
-const set: ReadonlySet<number> = new Set([1, 2, 3]);
-set.add(4)
+// const set: ReadonlySet<number> = new Set([1, 2, 3]);
+// set.add(4)
 
 
 
