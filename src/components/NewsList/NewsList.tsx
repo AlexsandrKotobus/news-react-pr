@@ -1,13 +1,19 @@
 import NewsItem from '../NewsItem/NewsItem';
 import withSkeleton from '../../helpers/hocs/withSkeleton';
 import styles from './styles.module.css';
+import { INews } from '../../interfaces';
 
-const NewsList = ({news}) => {
+interface Props{
+  news?: INews[];
+}
+
+
+const NewsList = ({news}: Props) => {
   // console.log('news ', news)
   
     return (
         <ul className={styles.list}>
-          {news.map(item => {
+          {news?.map(item => {
             return <NewsItem key={item.id}  item={item} />
           })}
           
@@ -15,7 +21,7 @@ const NewsList = ({news}) => {
     );
 }
 
-const NewsListWithSkeleton = withSkeleton(NewsList, 'item', 10)
+const NewsListWithSkeleton = withSkeleton<Props>(NewsList, 'item', 10)
 
 
 export default NewsListWithSkeleton;

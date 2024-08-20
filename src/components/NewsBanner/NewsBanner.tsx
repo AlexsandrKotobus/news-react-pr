@@ -1,9 +1,14 @@
-import { formatTimeAgo } from "../../helpers/formatTimeAgo";
+import { formatTimeAgo } from "../../helpers/formatTimeAgo.ts";
+import { INews } from "../../interfaces/index.ts";
 // import withSkeleton from '../../helpers/hocs/withSkeleton';
 import Image from "../Image/Image";
 import styles from './styles.module.css'
 
-const NewsBanner = ({item}) => {
+interface Props{
+  item: INews;
+}
+
+const NewsBanner = ({item}: Props) => {
     return (
         <div className={styles.banner}>
           {/* временно добавим проверку item - те знак ? после item {item?.image} */}
