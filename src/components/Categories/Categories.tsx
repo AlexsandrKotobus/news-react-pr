@@ -1,7 +1,16 @@
-import { forwardRef } from 'react';
+import { ForwardedRef, forwardRef } from 'react';
 import styles from './styles.module.css'
+import { CategoriesType } from '../../interfaces';
 
-const Categories = forwardRef(({categories, setSelectedCategory, selectedCategory}, ref) => {
+interface Props {
+  categories: CategoriesType[];
+  setSelectedCategory: (category: CategoriesType | null) => void;
+  selectedCategory: CategoriesType | null
+}
+
+const Categories = forwardRef(({categories, setSelectedCategory, selectedCategory} : Props, 
+  ref: ForwardedRef<HTMLDivElement>
+) => {
   // console.log('caat', categories)
     return (
 
