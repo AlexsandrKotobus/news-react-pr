@@ -2,12 +2,20 @@
     display: flex;
     align-items: center;
     width: 100%;
-    background-color: white;
     gap: 8px
   }
   .arrow {
-  border: none;
-  background-color: white;
-  cursor: pointer;
+    border: none;
+    background-color: white;
+    cursor: pointer;
   }
-  
+
+  .slider.dark .arrow {
+    background-color:#23272f;
+    color: #f6f7f9;
+  }
+
+  .slider.light .arrow {
+    background-color: white;
+    color: black;
+  }
