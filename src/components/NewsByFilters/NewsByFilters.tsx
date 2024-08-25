@@ -10,6 +10,7 @@ import { getNews } from '../../api/apiNews';
 import PagitationWrapper from '../PagitationWrapper/PagitationWrapper';
 import { NewsApiResponse, ParamsType } from '../../interfaces';
 
+
 const NewsByFilters = () => {
     const {filters, changeFilter} = useFilters({
         page_number: 1,
@@ -57,8 +58,8 @@ const NewsByFilters = () => {
                     handlePageClick = {handlePageClick} 
                     totalPages={TOTAL_PAGES}
                     currentPage = {filters.page_number} 
-                     >
-                {/* children */}
+                    >
+            
                 <NewsList isLoading={isLoading} news={data?.news}/>
             </PagitationWrapper>
          

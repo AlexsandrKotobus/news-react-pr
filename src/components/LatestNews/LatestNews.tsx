@@ -1,4 +1,3 @@
-import React from 'react';
 import { getLatestNews } from '../../api/apiNews';
 import { useFetch } from '../../helpers/hooks/useFetch';
 import BannersList from '../BannersList/BannersList'

@@ -19,7 +19,8 @@ export interface IPaginationProps {
     handleNextPage: ()=>void;
     handlePreviousPage: ()=>void; 
     handlePageClick: (page: number)=>void;
-   currentPage: number;
+    currentPage: number;
+
   }
 
   export type SkeletonType = 'banner' | 'item'
