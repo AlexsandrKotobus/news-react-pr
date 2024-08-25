@@ -8,14 +8,14 @@ interface Props {
     bottom?: boolean;
 }
 
-
 const PagitationWrapper = ({
     top, 
     bottom, 
     children, 
     ...paginationProps
     }: Props & IPaginationProps ) => {
-    return (
+        console.log('PagitationWrapper', {...paginationProps})
+        return (
        <>
        {top && <Pagination {...paginationProps} />}
        {children}
