@@ -6,7 +6,7 @@ interface IThemeContext {
   }
   
   export const ThemeContext = createContext<IThemeContext | undefined >(undefined)
-// чук проверка наличие/отсутствие данных
+// хук проверка наличие/отсутствие данных
   export const useTheme =()=> {
     const context  = useContext(ThemeContext)
     if (!context){
@@ -18,7 +18,7 @@ interface IThemeContext {
   interface ThemeProviderProps{
     children: ReactNode
   }
-
+//обертка 
   export const ThemeProvider = ({children}: ThemeProviderProps) =>{
     const [isDark, setIsDark] = useState(false);
 

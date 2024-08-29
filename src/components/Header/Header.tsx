@@ -4,7 +4,6 @@ import styles from './styles.module.css'
 import { useTheme } from "../../context/ThemeContext";
 
 
-
 const Header = () => {
   const {isDark, toggleTheme} = useTheme()
     return (
@@ -14,8 +13,6 @@ const Header = () => {
             <p className={styles.date}>{formatDate(new Date())}</p>
           </div>
           <img src={isDark ? themeIcon.light : themeIcon.light} width={30} alt='theme' onClick = {toggleTheme}  />
-
-          
         </header>
     );
 }
