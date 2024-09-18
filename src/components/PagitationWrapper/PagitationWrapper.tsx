@@ -14,7 +14,7 @@ const PagitationWrapper = ({
     children, 
     ...paginationProps
     }: Props & IPaginationProps ) => {
-        console.log('PagitationWrapper', {...paginationProps})
+        // console.log('PagitationWrapper', {...paginationProps})
         return (
        <>
        {top && <Pagination {...paginationProps} />}
