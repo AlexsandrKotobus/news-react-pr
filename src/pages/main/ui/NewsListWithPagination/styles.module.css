@@ -1,0 +1,11 @@
+.section {
+  display: flex;
+  /* если закомм  overflow и box-sizing то категории не бубут скролиться а растянут на всою */
+  /* ширину колонку */
+  overflow: hidden;
+  box-sizing: border-box;
+  flex-direction: column;
+  width: 100%;
+  gap: 32px;
+  }
+  
