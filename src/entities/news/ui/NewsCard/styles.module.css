@@ -1,7 +1,13 @@
-.item {
+.card {
     display: flex;
     width: 100%;
-    gap: 24px;
+    gap: 12px;
+  }
+  .banner {
+    /* display: flex;
+    width: 100%; */
+    flex-direction: column;
+     /* gap: 12px */
   }
   .title{
     font-size: 14px;
@@ -21,7 +27,5 @@
     background-color: #f2f4f5;
     background-position: center;
     background-size: cover;
-    flex-shrink: 0; /* запрещакт элементу сужаться от других элементов*/
-
-
+    flex-shrink: 0;  /* запрещакт элементу сужаться от других элементов  */
   }
