@@ -1,4 +1,4 @@
-.main{
+.news{
     display: grid;
     width: 100%;
     grid-template-columns: 1fr 1fr;
@@ -7,7 +7,7 @@
     
 }
 @media (max-width: 768px ){
-    .main{
+    .news{
         grid-template-columns: 1fr;
     }
 }
