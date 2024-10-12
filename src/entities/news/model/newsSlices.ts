@@ -8,9 +8,11 @@ import { IFilters } from '@/shared/interfaces';
 interface State {
   news: INews[];
   filters: IFilters;
+  currentNews: INews | null;
 }
 
 const initialState: State = {
+  currentNews: null,
   news: [],
   filters: {
       page_number: 1,
@@ -28,6 +30,10 @@ export const newsSlice = createSlice({
     setNews: (state, action: PayloadAction<INews[]>) => {
       state.news = action.payload
     },
+    // 
+    setCurrentNews: (state, action: PayloadAction<INews | null>) => {
+      state.currentNews = action.payload
+    },
     // диспатч-функция
     // из return из useFilters 
     // принимаем PayloadAction, экшен - это объект, 
@@ -39,7 +45,7 @@ export const newsSlice = createSlice({
   },
 })
 // и добавляем setFilters
-export const { setNews, setFilters } = newsSlice.actions
+export const { setNews, setFilters, setCurrentNews } = newsSlice.actions
 
 
 export default newsSlice.reducer;
